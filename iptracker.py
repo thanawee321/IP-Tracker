@@ -4,6 +4,7 @@ import socket
 import argparse
 import sys
 import os
+import time
 
 from datetime import datetime
 from colorama import *
@@ -44,13 +45,19 @@ def resolve_domain(domain_name):
         
 def get_ip_location_and_waf(ip):
     #Location
+    retries = 3
     url = f"{API_GET_LOCATION}/{ip}"
-    try:
-        response_location = requests.get(url,timeout=10,verify=False)
-        data = response_location.json()
-    except Exception as e:
-        print(f"[-] ERROR GET LOCATION : {e}")
-        return None
+    for i in range(retries):
+        try:
+            response_location = requests.get(url,timeout=15,verify=False)
+            data = response_location.json()
+            
+        except requests.exceptions.Timeout:
+            print(f"[!] Timeout, retrying {i+1}/{retries} ...")
+            time.sleep(2)   
+        except Exception as e:
+            print(f"[-] ERROR GET LOCATION : {e}")
+            return None
     
     
     #waf detect
@@ -178,7 +185,7 @@ def logo():
         " ██╔══██╗  ██╔══██║  ██╔══██╗   ╚██╔╝   ██╔══██║ ██║ █ ██║ ██║       ██╔ ██╗ ",
         " ██████╔╝  ██║  ██║  ██████╔╝    ██║    ██║  ██║ ██║ ████║ ██║   ██╗ ██╔══██╗",
         " ╚═════╝   ╚═╝  ╚═╝  ╚═════╝     ╚═╝    ╚═╝  ╚═╝  ╚══╝╚══╝ ╚██████╔╝ ╚═╝  ╚═╝",
-        "                                                     (FINDIP_LOCATION_V2.0)"
+        "                                                     (FINDIP_LOCATION_V2.1)"
     ]
     
     return "\n".join([Fore.CYAN + line + Style.RESET_ALL for line in logo_lines])+"\n"
@@ -188,7 +195,7 @@ def infomation():
     
     width = 60
     
-    version = "2.0"
+    version = "2.1"
     dev_by = "BabyH@ck"
     facebook = "https://www.facebook.com/thanawee321"
     youtube = "https://www.youtube.com/@BabyHackSenior"
@@ -284,5 +291,4 @@ def main():
 
 if __name__ == '__main__':
     windows_OS()
-
     main()

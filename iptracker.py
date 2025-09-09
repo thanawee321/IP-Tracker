@@ -46,7 +46,7 @@ def get_ip_location_and_waf(ip):
     #Location
     url = f"{API_GET_LOCATION}/{ip}"
     try:
-        response_location = requests.get(url,timeout=5,verify=False)
+        response_location = requests.get(url,timeout=10,verify=False)
         data = response_location.json()
     except Exception as e:
         print(f"[-] ERROR GET LOCATION : {e}")
@@ -284,4 +284,5 @@ def main():
 
 if __name__ == '__main__':
     windows_OS()
+
     main()

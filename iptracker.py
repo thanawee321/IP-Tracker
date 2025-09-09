@@ -104,7 +104,7 @@ def get_ip_location_and_waf(ip):
     if detected_waf:
         data['waf_list'] = detected_waf
     else:
-        data['waf_list'] = [f"{Fore.RED}Not detected{Fore.RESET}"]
+        data['waf_list'] = ["Not Detected"]
         
             
     return data
@@ -126,7 +126,7 @@ def show_display(data,original_input):
     console = Console()
     #Header Table 
     table.add_column("LIST",style="bold yellow",justify="right")
-    table.add_column("Value",style="green",justify='left')
+    table.add_column("Value",style="bold green",justify='left')
     
     """print(f"{Fore.YELLOW}Input            {Fore.RESET}{Fore.RED}->{Fore.RESET} {Fore.GREEN}{original_input}{Fore.RESET}")
     print(f"{Fore.YELLOW}IP Address       {Fore.RESET}{Fore.RED}->{Fore.RESET} {Fore.GREEN}{data['query']}{Fore.RESET}")
@@ -155,7 +155,7 @@ def show_display(data,original_input):
     table.add_row("ZIP Code", data['zip'])
     table.add_row("Time Zone", data['timezone'])
     table.add_row("ISP", data['isp'])
-    table.add_row("WAF Detected", ", ".join(data['waf_list']))
+    table.add_row("WAF Detected",", ".join(data['waf_list']))
     table.add_row("Organization ASN", data['as'])
     table.add_row("Organization", data['org'])
     table.add_row("Latitude", str(data['lat']))

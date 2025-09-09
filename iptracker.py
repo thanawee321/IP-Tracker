@@ -178,7 +178,7 @@ def logo():
         " ██╔══██╗  ██╔══██║  ██╔══██╗   ╚██╔╝   ██╔══██║ ██║ █ ██║ ██║       ██╔ ██╗ ",
         " ██████╔╝  ██║  ██║  ██████╔╝    ██║    ██║  ██║ ██║ ████║ ██║   ██╗ ██╔══██╗",
         " ╚═════╝   ╚═╝  ╚═╝  ╚═════╝     ╚═╝    ╚═╝  ╚═╝  ╚══╝╚══╝ ╚██████╔╝ ╚═╝  ╚═╝",
-        "                                                     (FINDIP_LOCATION_V1.8)"
+        "                                                     (FINDIP_LOCATION_V2.0)"
     ]
     
     return "\n".join([Fore.CYAN + line + Style.RESET_ALL for line in logo_lines])+"\n"
@@ -188,10 +188,10 @@ def infomation():
     
     width = 60
     
-    version = "1.8"
+    version = "2.0"
     dev_by = "BabyH@ck"
     facebook = "https://www.facebook.com/thanawee321"
-    organization = "https://www.youtube.com/@BabyHackSenior"
+    youtube = "https://www.youtube.com/@BabyHackSenior"
     
 
     # สร้างกรอบและเก็บในตัวแปร
@@ -209,13 +209,13 @@ def infomation():
     version_text = f" Version       : {version}".ljust(width - 2)
     dev_by_text = f" DevBy         : {dev_by}".ljust(width - 2)
     aboutme = f" Facebook      : {facebook}".ljust(width - 2)
-    company = f" Organization  : {organization}".ljust(width - 2)
+    youtube = f" Organization  : {youtube}".ljust(width - 2)
     
     result.append(edge + title_text + edge)
     result.append(edge + version_text + edge)
     result.append(edge + dev_by_text + edge)
     result.append(edge + aboutme + edge)
-    result.append(edge + company + edge)
+    result.append(edge + youtube + edge)
     result.append(edge + " " * (width - 2) + edge)  # บรรทัดว่าง
     result.append(edge + " " * (width - 2) + edge)  # บรรทัดว่าง
     result.append(edge * width + Fore.RESET)  # ขอบล่าง
